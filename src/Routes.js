@@ -6,12 +6,18 @@ import ProductsList from "./Views/ProductsList";
 import Signup from "./Views/Signup";
 import SingleProduct from "./Views/SingleProduct";
 
-function Routes() {
+function Routes({ mostrarList, setMostraList }) {
   return (
     <>
       <Route exact path="/">
         {/* <Home /> */}
         <ProductsList />
+      </Route>
+      <Route exact path="/search/:itemsSearch">
+        <ProductsList
+          mostrarList={mostrarList}
+          setMostrarList={setMostraList}
+        />
       </Route>
       <Route exact path="/login">
         <Login />

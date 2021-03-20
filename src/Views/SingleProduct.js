@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import sinImagen from "../assets/sin_imagen.jpg";
+import Navbar from "../Components/Navbar";
 
 function SingleProduct() {
   const [producto, setProduct] = useState({});
@@ -24,6 +25,7 @@ function SingleProduct() {
 
   return (
     <div>
+      <Navbar />
       <p>Hola soy un solo producto</p>
       <p>{producto.product_name}</p>
       <p>{producto.description}</p>
