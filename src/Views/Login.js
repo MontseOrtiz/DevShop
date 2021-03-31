@@ -4,10 +4,11 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import useForm from "../hooks/useForm";
 
-function Login() {
+function Login({ user }) {
   const history = useHistory();
   const sendForm = (inputs) => {
     console.log("Ejecuté send form", inputs);
+
     axios
       .post("https://ecomerce-master.herokuapp.com/api/v1/login", inputs)
       .then(({ data, status }) => {
@@ -15,7 +16,7 @@ function Login() {
         const { token } = data;
         // const token = data.token;
         window.localStorage.setItem("token", token);
-        history.push("/");
+        history.push("/profile");
       })
       .catch((error) => {
         console.error(error.response.data);
@@ -31,7 +32,7 @@ function Login() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar user={user} />
       <h2>Soy Login</h2>
 
       <form onSubmit={handleSubmit}>

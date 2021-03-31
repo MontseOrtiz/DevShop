@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import useForm from "../hooks/useForm";
 import axios from "axios";
 
-function Signup() {
+function Signup({ user }) {
   const history = useHistory();
 
   const sendForm = (inputs) => {
@@ -29,7 +29,7 @@ function Signup() {
 
   return (
     <>
-      <Navbar />
+      <Navbar user={user} />
       <p>Soy signup</p>
       <form onSubmit={handleSubmit}>
         <div className="input-group flex-nowrap">

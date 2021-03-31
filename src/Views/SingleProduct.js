@@ -25,7 +25,7 @@ function SingleProduct() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar user={user} />
       <p>Hola soy un solo producto</p>
       <p>{producto.product_name}</p>
       <p>{producto.description}</p>

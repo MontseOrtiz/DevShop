@@ -4,7 +4,7 @@ import CardProduct from "../Components/CardProduct";
 import Navbar from "../Components/Navbar";
 import { useParams } from "react-router-dom";
 
-function ProductsList() {
+function ProductsList({ user }) {
   const { itemsSearch } = useParams();
   const [productsList, setProductsList] = useState([]);
   const [busquedaList, setbusquedaList] = useState([]);
@@ -65,7 +65,7 @@ function ProductsList() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar user={user} />
       <h2>Soy Product page </h2>
       {showList.length != 0 ? (
         showList.map((producto) => {
