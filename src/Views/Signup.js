@@ -5,7 +5,8 @@ function Signup() {
   return (
     <>
       <Navbar />
-      <form onSubmit={handleSubmit}>
+      <p>Soy signup</p>
+      {/* <form onSubmit={handleSubmit}>
         <div className="input-group flex-nowrap">
           <span className="input-group-text" id="addon-wrapping">
             @
@@ -96,7 +97,7 @@ function Signup() {
             Crear Cuenta
           </button>
         </div>
-      </form>
+      </form> */}
     </>
   );
 }

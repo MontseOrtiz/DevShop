@@ -7,7 +7,7 @@ function Login() {
       <Navbar />
       <h2>Soy Login</h2>
 
-      <form onSubmit={handleSubmit}>
+      {/* <form onSubmit={handleSubmit}>
         <div>
           <span className="input-group-text" id="addon-wrapping">
             @
@@ -43,7 +43,7 @@ function Login() {
             Iniciar sesión
           </button>
         </div>
-      </form>
+      </form> */}
     </div>
   );
 }

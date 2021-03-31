@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import sinImagen from "../assets/sin_imagen.jpg";
 import Navbar from "../Components/Navbar";
@@ -47,6 +47,7 @@ function SingleProduct() {
       )}
 
       <button>Comprar</button>
+      <Link to="/">Todos los productos</Link>
     </div>
   );
 }

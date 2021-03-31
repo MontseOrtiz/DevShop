@@ -21,6 +21,7 @@ function ProductsList() {
       .then((res) => {
         setProductsList(res.data);
         setShowList(res.data);
+        console.log("soy la respuesta", res.data);
         list = res.data;
       })
       .catch((err) => console.log(err));
