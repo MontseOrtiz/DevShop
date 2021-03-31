@@ -1,13 +1,40 @@
 import React from "react";
 import Navbar from "../Components/Navbar";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
+import useForm from "../hooks/useForm";
 
 function Login() {
+  const history = useHistory();
+  const sendForm = (inputs) => {
+    console.log("Ejecuté send form", inputs);
+    axios
+      .post("https://ecomerce-master.herokuapp.com/api/v1/login", inputs)
+      .then(({ data, status }) => {
+        console.log(data, status);
+        const { token } = data;
+        // const token = data.token;
+        window.localStorage.setItem("token", token);
+        history.push("/");
+      })
+      .catch((error) => {
+        console.error(error.response.data);
+      });
+  };
+
+  // const { inputs, handleInputs, handleSubmit } = useForm(sendForm, {
+  //   email: "mali",
+  //   password: "gatitos59",
+  // });
+
+  const { inputs, handleInputs, handleSubmit } = useForm(sendForm, {});
+
   return (
     <div>
       <Navbar />
       <h2>Soy Login</h2>
 
-      {/* <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div>
           <span className="input-group-text" id="addon-wrapping">
             @
@@ -43,7 +70,7 @@ function Login() {
             Iniciar sesión
           </button>
         </div>
-      </form> */}
+      </form>
     </div>
   );
 }

@@ -1,12 +1,37 @@
 import React from "react";
 import Navbar from "../Components/Navbar";
+import { useHistory } from "react-router-dom";
+import useForm from "../hooks/useForm";
+import axios from "axios";
 
 function Signup() {
+  const history = useHistory();
+
+  const sendForm = (inputs) => {
+    console.log("Ejecuté sendForm2Elregresodelosformsasesino", inputs);
+    if (inputs.password === inputs.password_confirmation) {
+      delete inputs.password_confirmation;
+      axios
+        .post("https://ecomerce-master.herokuapp.com/api/v1/signup", inputs)
+        .then(({ data, status }) => {
+          console.log(data, status);
+          history.push("/");
+        })
+        .catch((error) => {
+          console.error(error.response.data);
+        });
+    } else {
+      alert("Las contraseñas no coinciden, ¿qué pasó ahí? (°_°)/");
+    }
+  };
+
+  const { inputs, handleInputs, handleSubmit } = useForm(sendForm, {});
+
   return (
     <>
       <Navbar />
       <p>Soy signup</p>
-      {/* <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className="input-group flex-nowrap">
           <span className="input-group-text" id="addon-wrapping">
             @
@@ -92,12 +117,17 @@ function Signup() {
           />
         </div>
 
-        <div className="col-6 mt-4">
-          <button type="submit" className="btn btn-info">
+        <div
+        // className="col-6 mt-4"
+        >
+          <button
+            type="submit"
+            //  className="btn btn-info"
+          >
             Crear Cuenta
           </button>
         </div>
-      </form> */}
+      </form>
     </>
   );
 }
