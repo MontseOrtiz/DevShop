@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../Components/Navbar";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import useForm from "../hooks/useForm";
 
-function Login({ user }) {
+function Login() {
   const history = useHistory();
+  // const [show, setShow] = useEffect(false);
+
+  const divStyles = {
+    display: "none",
+  };
   const sendForm = (inputs) => {
     console.log("Ejecuté send form", inputs);
 
@@ -17,12 +22,38 @@ function Login({ user }) {
         // const token = data.token;
         window.localStorage.setItem("token", token);
         history.push("/profile");
+        if (status != 200) {
+          divStyles = {
+            display: "block",
+          };
+        }
       })
       .catch((error) => {
         console.error(error.response.data);
       });
   };
 
+  // const check =(){
+
+  // }
+
+  // const sendForm = (inputs) => {
+  //   console.log("Ejecuté sendForm2Elregresodelosformsasesino", inputs);
+  //   if (inputs.password === inputs.password_confirmation) {
+  //     delete inputs.password_confirmation;
+  //     axios
+  //       .post("https://ecomerce-master.herokuapp.com/api/v1/signup", inputs)
+  //       .then(({ data, status }) => {
+  //         console.log(data, status);
+  //         history.push("/");
+  //       })
+  //       .catch((error) => {
+  //         console.error(error.response.data);
+  //       });
+  //   } else {
+  //     alert("Las contraseñas no coinciden, ¿qué pasó ahí? (°_°)/");
+  //   }
+  // };
   // const { inputs, handleInputs, handleSubmit } = useForm(sendForm, {
   //   email: "mali",
   //   password: "gatitos59",
@@ -32,7 +63,7 @@ function Login({ user }) {
 
   return (
     <div>
-      <Navbar user={user} />
+      <Navbar />
       <h2>Soy Login</h2>
 
       <form onSubmit={handleSubmit}>
@@ -67,6 +98,7 @@ function Login({ user }) {
         </div>
 
         <div>
+          <p style={divStyles}>Algo mal ha salido</p>
           <button type="submit" className="btn btn-info">
             Iniciar sesión
           </button>

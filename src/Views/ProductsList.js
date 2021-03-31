@@ -67,13 +67,18 @@ function ProductsList({ user }) {
     <div>
       <Navbar user={user} />
       <h2>Soy Product page </h2>
-      {showList.length != 0 ? (
-        showList.map((producto) => {
-          return <CardProduct producto={producto} key={producto._id} />;
-        })
-      ) : (
-        <p>{mensaje}</p>
-      )}
+      {/* <div className="container-fluid d-flex flex-row flex-wrap justify-content-around"> */}
+      <div className="container-fluid px-5">
+        <div className="row">
+          {showList.length != 0 ? (
+            showList.map((producto) => {
+              return <CardProduct producto={producto} key={producto._id} />;
+            })
+          ) : (
+            <p>{mensaje}</p>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
