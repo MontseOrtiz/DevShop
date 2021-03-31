@@ -1,9 +1,11 @@
 import React from "react";
 import CardProduct from "../Components/CardProduct";
+import Navbar from "../Components/Navbar";
 
 function Home() {
   return (
     <div>
+      <Navbar />
       <h2>Soy Home</h2>
       <CardProduct></CardProduct>
     </div>

@@ -1,15 +1,23 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import Home from "./Views/Home";
+// import Home from "./Views/Home";
 import Login from "./Views/Login";
-import Product from "./Views/Product";
+import ProductsList from "./Views/ProductsList";
 import Signup from "./Views/Signup";
+import SingleProduct from "./Views/SingleProduct";
 
-function Routes() {
+function Routes({ mostrarList, setMostraList }) {
   return (
     <>
       <Route exact path="/">
-        <Home />
+        {/* <Home /> */}
+        <ProductsList />
+      </Route>
+      <Route exact path="/search/:itemsSearch">
+        <ProductsList
+          mostrarList={mostrarList}
+          setMostrarList={setMostraList}
+        />
       </Route>
       <Route exact path="/login">
         <Login />
@@ -18,7 +26,7 @@ function Routes() {
         <Signup />
       </Route>
       <Route exact path="/item/:iditem">
-        <Product />
+        <SingleProduct />
       </Route>
     </>
   );
