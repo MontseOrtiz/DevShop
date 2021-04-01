@@ -29,7 +29,7 @@ function SingleProduct() {
       <NavbarComponent />
 
       <div className="container div-contenido ">
-        <div className="row">
+        <div className="row ">
           <div className="col-11 col-md-7 my-auto m-auto">
             {producto.hasOwnProperty("image") ||
             producto.hasOwnProperty("images") === true ? (

@@ -4,6 +4,7 @@ import CardProduct from "../Components/CardProduct";
 import NavbarComponent from "../Components/Navbar";
 import { useParams } from "react-router-dom";
 import "../styles/CardProduct.scss";
+import sinResultado from "../assets/sin_resultado.png";
 
 function ProductsList({ user }) {
   const { itemsSearch } = useParams();
@@ -66,18 +67,28 @@ function ProductsList({ user }) {
 
   return (
     <div className="div-all-products">
-      <NavbarComponent user={user} />
-      <h2 className="titulo-productos">Nuestros Productos</h2>
-      {/* <div className="container-fluid d-flex flex-row flex-wrap justify-content-around"> */}
-      <div className="container-fluid px-5">
-        <div className="row">
-          {showList.length != 0 ? (
-            showList.map((producto) => {
-              return <CardProduct producto={producto} key={producto._id} />;
-            })
-          ) : (
-            <p>{mensaje}</p>
-          )}
+      <NavbarComponent />
+      <div className="contenido">
+        <h2 className="titulo-productos text-pattern">Nuestros Productos</h2>
+        {/* <p>hey {user.first_name}</p> */}
+        {/* <div className="container-fluid d-flex flex-row flex-wrap justify-content-around"> */}
+        <div className="container-fluid px-5">
+          <div className="row">
+            {showList.length != 0 ? (
+              showList.map((producto) => {
+                return <CardProduct producto={producto} key={producto._id} />;
+              })
+            ) : (
+              <>
+                <p className="mensaje">{mensaje}</p>
+                <img
+                  src={sinResultado}
+                  alt={"Sin resultado"}
+                  className="img-mensaje"
+                />
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>

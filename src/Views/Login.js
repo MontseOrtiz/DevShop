@@ -1,109 +1,131 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import NavbarComponent from "../Components/Navbar";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import useForm from "../hooks/useForm";
+import "../styles/Auth.scss";
 
-function Login() {
+import payload from "../utils/payload";
+
+function Login({ setUser3 }) {
   const history = useHistory();
-  // const [show, setShow] = useEffect(false);
+  const [mensaje, setMensaje] = useState();
 
-  const divStyles = {
-    display: "none",
+  const token = window.localStorage.getItem("token");
+  const [user, setUser] = useState({});
+  let idUser = undefined;
+
+  const obtenerDatos = () => {
+    if (token) {
+      console.log("sin token ");
+      const user2 = payload();
+      idUser = user2.id;
+      const config = {
+        headers: {
+          Authorization: `JWT ${token}`,
+        },
+      };
+
+      const obtenerUser = async () => {
+        await axios
+          .get(
+            `https://ecomerce-master.herokuapp.com/api/v1/user/${idUser}`,
+            config
+          )
+          .then((res) => {
+            console.log("obteniendo data de usuario", res.data, res.status);
+            setUser(res.data);
+            setUser3(res.data);
+            console.log("soy user-----routes>", user);
+          })
+
+          .catch((error) => {
+            console.error(error.response.data);
+          });
+      };
+      obtenerUser();
+      console.log("soy user aslkdjasdlasjdlaks", user);
+      console.log("soy el user activo", user.first_name);
+    }
   };
-  const sendForm = (inputs) => {
-    console.log("Ejecuté send form", inputs);
+  // if (token && idUser != undefined) {
+  //   useEffect(() => {
+  //     // console.log("itemSearch   ", itemsSearch);
+  //     // obtenerUser();
+  //     obtenerDatos();
+  //     console.log("sourlekdalskdmalskdlaskjlkasjflaksjfl", user);
+  //   }, [token]);
+  // }
 
+  const sendForm = (inputs) => {
     axios
       .post("https://ecomerce-master.herokuapp.com/api/v1/login", inputs)
       .then(({ data, status }) => {
-        console.log(data, status);
-        const { token } = data;
         // const token = data.token;
+        const { token } = data;
+
         window.localStorage.setItem("token", token);
+        obtenerDatos();
         history.push("/profile");
-        if (status != 200) {
-          divStyles = {
-            display: "block",
-          };
-        }
       })
       .catch((error) => {
-        console.error(error.response.data);
+        const errorStatus = error.response.data.status;
+        if (errorStatus === "fail") {
+          setMensaje("Algo no coincide, por favor intentalo de nuevo");
+        }
+        console.error("eroororororo", error.response.data);
+        console.error("eroororororo", error.response.data.status);
       });
   };
-
-  // const check =(){
-
-  // }
-
-  // const sendForm = (inputs) => {
-  //   console.log("Ejecuté sendForm2Elregresodelosformsasesino", inputs);
-  //   if (inputs.password === inputs.password_confirmation) {
-  //     delete inputs.password_confirmation;
-  //     axios
-  //       .post("https://ecomerce-master.herokuapp.com/api/v1/signup", inputs)
-  //       .then(({ data, status }) => {
-  //         console.log(data, status);
-  //         history.push("/");
-  //       })
-  //       .catch((error) => {
-  //         console.error(error.response.data);
-  //       });
-  //   } else {
-  //     alert("Las contraseñas no coinciden, ¿qué pasó ahí? (°_°)/");
-  //   }
-  // };
-  // const { inputs, handleInputs, handleSubmit } = useForm(sendForm, {
-  //   email: "mali",
-  //   password: "gatitos59",
-  // });
 
   const { inputs, handleInputs, handleSubmit } = useForm(sendForm, {});
 
   return (
-    <div>
+    <div className="login-container">
       <NavbarComponent />
-      <h2>Soy Login</h2>
+      <div className="login-content">
+        <h2 className="texto-bienvenida">Bienvenido de nuevo</h2>
+        <p className="text-validacion">{mensaje}</p>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <input
+              type="text"
+              value={inputs.email}
+              required
+              onChange={handleInputs}
+              className="form-control"
+              id="email"
+              placeholder="Email"
+              required
+            />
+          </div>
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <span className="input-group-text" id="addon-wrapping">
-            @
-          </span>
-          <input
-            type="text"
-            value={inputs.email}
-            required
-            onChange={handleInputs}
-            className="form-control"
-            id="email"
-            placeholder="Email"
-          />
-        </div>
+          <div>
+            <input
+              type="password"
+              value={inputs.password}
+              required
+              onChange={handleInputs}
+              className="form-control"
+              id="password"
+              placeholder="Contraseña"
+              required
+            />
+          </div>
 
-        <div>
-          <span className="input-group-text" id="addon-wrapping">
-            @
-          </span>
-          <input
-            type="password"
-            value={inputs.password}
-            required
-            onChange={handleInputs}
-            className="form-control"
-            id="password"
-            placeholder="Contraseña"
-          />
-        </div>
-
-        <div>
-          <p style={divStyles}>Algo mal ha salido</p>
-          <button type="submit" className="btn btn-info">
-            Iniciar sesión
-          </button>
-        </div>
-      </form>
+          <div>
+            <button type="submit" className="btn btn-primary">
+              Iniciar sesión
+            </button>
+          </div>
+        </form>
+        <p className="text-registro">
+          Si no tienes una cuenta puedes registrarte
+        </p>
+        <button className="btn btn-primary signup-btn">
+          <Link to="/signup"> Sign up</Link>
+        </button>
+      </div>
     </div>
   );
 }

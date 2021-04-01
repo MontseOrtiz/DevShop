@@ -1,0 +1,15 @@
+//Buscador
+$btn-color: #817DD2;
+.nav-container{
+    font-size: 18px;
+}
+
+.btn-outline-primary{
+    color: $btn-color !important;
+    border-color: $btn-color !important;
+}
+
+.btn-outline-primary:hover{
+    background-color:$btn-color !important;
+    color: white !important;
+}

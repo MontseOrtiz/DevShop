@@ -21,7 +21,7 @@ import {
   NavbarText,
 } from "reactstrap";
 
-function NavbarComponent() {
+function NavbarComponent({ setUser3 }) {
   // const [isOpen, setIsOpen] = useState(false);
   // const toggle = () => setIsOpen(!isOpen);
 
@@ -47,6 +47,7 @@ function NavbarComponent() {
           .then((res) => {
             console.log("obteniendo data de usuario", res.data, res.status);
             setUser(res.data);
+            setUser3(res.data);
             console.log("soy user", user);
           })
 
@@ -81,17 +82,23 @@ function NavbarComponent() {
 
   return (
     <div>
-      <Navbar color="light" light expand="md">
+      <Navbar
+        color="light"
+        light
+        expand="md"
+        className="fixed-top nav-container"
+      >
         <NavbarBrand href="/">DEVSHOP</NavbarBrand>
         {/* <Link to="/">
           <h2>DEVSHOP</h2>
         </Link> */}
 
-        <Buscador />
-
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
+          <Nav className="ml-auto" navbar>
+            <NavItem>
+              <Buscador />
+            </NavItem>
             {token ? (
               admin ? (
                 <>

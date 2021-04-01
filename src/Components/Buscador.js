@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import "../styles/Navbar.scss";
 
 function Buscador() {
   const history = useHistory();
@@ -13,14 +14,19 @@ function Buscador() {
   };
 
   return (
-    <div>
+    <div className="d-flex">
       <input
+        className="form-control mr-2"
+        type="search"
+        placeholder="Search"
         onChange={(e) => {
           console.log(e.target.value);
           setPalabra(e.target.value.toLocaleLowerCase());
         }}
       />
-      <button onClick={buscador}>Buscar</button>
+      <button className="btn btn-outline-primary" onClick={buscador}>
+        Buscar
+      </button>
     </div>
   );
 }

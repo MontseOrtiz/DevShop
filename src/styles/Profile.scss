@@ -1,0 +1,12 @@
+.profile-container{
+    background-color: #D3E1E6;
+    font-size: 66.5%; 
+    height: 100vh;
+
+    .profile-content{
+        padding-top: 9em;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap; 
+    }
+}

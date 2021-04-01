@@ -3,15 +3,17 @@ $btn-color: #817DD2;
 .div-contenedor{
     background: url("../assets/background-single-product.png") no-repeat;
     background-size: cover;
-    font-size: 66.5%;
     height: 100vh;
+    font-size: 66.5%; 
 
     .div-contenido{
-        height: auto;
+        padding-top: 9em; 
+        height: 100%;
         transition: all .5s;
         padding: auto 0;
         display: flex;
         align-items: center;
+       
     }
 
 
@@ -78,7 +80,12 @@ $btn-color: #817DD2;
 
     .div-contenedor{
 
-
+        .div-contenido{
+            justify-content: space-around;
+            .row{
+                height: 100%;
+            }
+        }
         .nombre-producto, .precio-producto {
             font-size: 1.6em;
         }

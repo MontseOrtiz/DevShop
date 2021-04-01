@@ -2,13 +2,57 @@
 
 
 .div-all-products{
-    background-color: rgba(252, 241, 252, 0.76);
+
+    // background-color: #F7F3F2;
+    background-color: #f8cdea7e;
+    height: 100%;
+    
+    .contenido{
+        height: 100%;
+    }
+
     .titulo-productos{
-        font-family: 'Monoton', cursive;
+        font-family: 'Fredoka One', cursive;
         text-align: center;
+        font-size: 80px;
+        padding-top: 90px;
+        padding-bottom: 20px;
+
+    }
+
+    .text-pattern {
+        color: transparent;
+        background-color: #69c8ee;
+        background-image: repeating-linear-gradient(45deg, transparent, transparent 25px, rgba(255, 255, 255, 0.404) 25px, rgba(255, 255, 255, 0.356) 50px);    
+        // background-image: repeating-linear-gradient(45deg, transparent, transparent 25px, rgba(255, 255, 255, .5) 25px, rgba(255, 255, 255, .5) 50px);    
+        // background-image: repeating-linear-gradient(45deg, transparent, transparent 25px, rgba(241, 180, 218, 0.5) 25px, rgba(245, 115, 217, 0.5) 50px); 
+        background-clip: text;
+        animation: color 50s linear infinite;
+        background-size: 200%;    
     }
     
+    @keyframes color {
+        from {
+            background-position: 0% 50%;
+        }
+    
+        to {
+            background-position: 100% 50%;
+        }
+    }
 
+    .mensaje{
+        font-size: 20px;
+        text-align: center;
+        margin: 0 auto;
+        padding: auto;
+    }
+    .img-mensaje{
+        margin: 30px auto; 
+        width: 50%;
+        border-radius: 10px;
+
+    }
 }
 
 
@@ -57,6 +101,18 @@
 
 @media screen and (max-width: 576px) {
 
+// Product List
+
+
+    .div-all-products{
+        .titulo-productos{
+            padding-top: 70px;
+            padding-bottom: 20px;
+            font-size: 30px;
+        }
+    }
+
+// Card Product
 
     .card-product{
 

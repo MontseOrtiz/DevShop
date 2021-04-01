@@ -1,0 +1,103 @@
+$btn-color: #817DD2;
+
+
+//LOGIN & SIGNUP
+.login-container, .signup-container{
+    font-size: 66.5%;
+    background-color: #D3E1E6;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .login-content, .signup-content{
+        // height: 100%;
+        padding-top: 9em; 
+        background-color: white;
+        padding: 2em;
+        width: 40%;
+        margin: 0 auto;
+        text-align: center;
+
+        .texto-bienvenida{
+            font-size: 3em;
+            margin-bottom: 1em;
+        }
+
+        input{
+            margin-bottom: 1em !important;
+        }
+
+        .btn-primary{
+            background-color: $btn-color !important;
+            border-color: $btn-color !important;
+            margin: 1em;
+            width: 40%;
+        }
+
+        .text-registro{
+            font-size: 1.5em;
+            color: grey;
+            margin-bottom: 0;
+        }
+
+        .text-validacion{
+            font-size: 1.5em;
+            color: rgb(243, 8, 8);
+            margin-bottom: 1em;
+        }
+        
+        .signup-btn{
+            a{
+                text-decoration: none;
+                color: white;
+            }
+            a:link, a:visited, a:active {
+                text-decoration:none;
+            }
+        }
+        
+    }
+
+    
+}
+
+//singup
+
+
+
+@media screen and (max-width: 576px) {
+
+
+//login
+.login-container, .signup-container{
+
+
+    .login-content, .signup-content{
+
+        width: 90%;
+ 
+        .texto-bienvenida{
+            font-size: 2em;
+        }
+
+        input{
+            font-size: 1.3em;
+        }
+        
+        .btn-primary{
+            margin: 1em 0;
+            width: 100%;
+        }
+        .text-registro{
+            font-size: 1.1em;
+        }
+
+
+    }
+}
+   
+    
+     }
+    
+    
