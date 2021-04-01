@@ -1,5 +1,5 @@
 import React from "react";
-import "./CardProduct.scss";
+import "../styles/CardProduct.scss";
 import { Link } from "react-router-dom";
 import sinImagen from "../assets/sin_imagen.jpg";
 
@@ -17,24 +17,24 @@ function CardProduct({ producto }) {
               <img
                 src={producto.image}
                 alt={producto.product_name}
-                className="image-fluid"
+                className="image-fluid  "
               />
             </div>
           ) : (
-            <div className="img-div">
+            <div className="img-div  ">
               <img
                 src={producto.images}
                 alt={producto.product_name}
-                className="image-fluid"
+                className="image-fluid  "
               />
             </div>
           )
         ) : (
-          <div className="img-div">
+          <div className="img-div  ">
             <img
               src={sinImagen}
               alt={producto.product_name}
-              className="image-fluid"
+              className="image-fluid  "
             />
           </div>
         )}
@@ -46,6 +46,7 @@ function CardProduct({ producto }) {
         </div>
         <div>
           <p className="precio-producto">${producto.price}</p>
+          <button>Comprar</button>
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import sinImagen from "../assets/sin_imagen.jpg";
 import Navbar from "../Components/Navbar";
+import "../styles/SingleProduct.scss";
 
 function SingleProduct() {
   const [producto, setProduct] = useState({});
@@ -24,30 +25,50 @@ function SingleProduct() {
   }, []);
 
   return (
-    <div>
+    <div className="div-contenedor">
       <Navbar />
-      <p>Hola soy un solo producto</p>
-      <p>{producto.product_name}</p>
-      <p>{producto.description}</p>
-      <p>{producto.price}</p>
-      <p>{producto.category}</p>
-      <p>{producto.brand}</p>
-      {producto.hasOwnProperty("image") ||
-      producto.hasOwnProperty("images") === true ? (
-        producto.image ? (
-          <img src={producto.image} alt={producto.product_name} />
-        ) : (
-          <img src={producto.images} alt={producto.product_name} />
-        )
-      ) : (
-        <div>
-          <h4>sinImgen</h4>
-          <img src={sinImagen} alt={producto.product_name} />
-        </div>
-      )}
 
-      <button>Comprar</button>
-      <Link to="/">Todos los productos</Link>
+      <div className="container div-contenido ">
+        <div className="row">
+          <div className="col-11 col-md-7 my-auto m-auto">
+            {producto.hasOwnProperty("image") ||
+            producto.hasOwnProperty("images") === true ? (
+              producto.image ? (
+                <img
+                  src={producto.image}
+                  alt={producto.product_name}
+                  className="img-single image-fluid"
+                />
+              ) : (
+                <img
+                  src={producto.images}
+                  alt={producto.product_name}
+                  className="img-single image-fluid"
+                />
+              )
+            ) : (
+              <div>
+                <h4>sinImgen</h4>
+                <img
+                  src={sinImagen}
+                  alt={producto.product_name}
+                  className="img-single image-fluid"
+                />
+              </div>
+            )}
+          </div>
+          <div className="col-11 col-md-5 mx-auto">
+            <p className="nombre-producto">{producto.product_name}</p>
+            <p className="marca-producto">{producto.brand}</p>
+            <p className="categoria-producto">Categoria: {producto.category}</p>
+            <p className="precio-producto">${producto.price}</p>
+
+            <button className="btn-comprar">Comprar</button>
+            <p className="descripcion-producto">{producto.description}</p>
+            {/* <Link to="/">Todos los productos</Link> */}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

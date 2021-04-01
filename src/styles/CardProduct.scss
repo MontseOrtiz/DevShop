@@ -1,3 +1,13 @@
+// Product List
+
+.titulo-productos{
+    font-family: 'Monoton', cursive;
+    text-align: center;
+}
+
+
+
+// Card Product
 
 .card-product{
     // background: black;
@@ -8,7 +18,7 @@
 
   .img-div{
         width: 100%;
-        height: 80%;
+        height: 70%;
         border-radius: 1em;
         background-image: url("../assets/sin_imagen.jpg");
         background-repeat: no-repeat;
@@ -41,7 +51,7 @@
 
 
     .card-product{
-    
+
         height: 22em;
         margin-bottom: 1em;
         .img-div{

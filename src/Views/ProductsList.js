@@ -3,6 +3,7 @@ import axios from "axios";
 import CardProduct from "../Components/CardProduct";
 import Navbar from "../Components/Navbar";
 import { useParams } from "react-router-dom";
+import "../styles/CardProduct.scss";
 
 function ProductsList({ user }) {
   const { itemsSearch } = useParams();
@@ -66,7 +67,7 @@ function ProductsList({ user }) {
   return (
     <div>
       <Navbar user={user} />
-      <h2>Soy Product page </h2>
+      <h2 className="titulo-productos">Nuestros Productos</h2>
       {/* <div className="container-fluid d-flex flex-row flex-wrap justify-content-around"> */}
       <div className="container-fluid px-5">
         <div className="row">
