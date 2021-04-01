@@ -107,7 +107,9 @@ function NavbarComponent() {
                     </DropdownToggle>
                     <DropdownMenu right>
                       <DropdownItem href="/profile">Perfil</DropdownItem>
-                      <DropdownItem>Crear Producto</DropdownItem>
+                      <DropdownItem href="/create-product">
+                        Crear Producto
+                      </DropdownItem>
                     </DropdownMenu>
                   </UncontrolledDropdown>
                   <NavItem>

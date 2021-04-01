@@ -6,6 +6,7 @@ import Perfil from "./Views/Perfil";
 import ProductsList from "./Views/ProductsList";
 import Signup from "./Views/Signup";
 import SingleProduct from "./Views/SingleProduct";
+import CreateProduct from "./Views/CreateProduct";
 import axios from "axios";
 import payload from "./utils/payload";
 import { Redirect } from "react-router-dom";
@@ -83,6 +84,9 @@ function Routes() {
       </Route>
       <Route path="/profile">
         <Perfil user={user} />
+      </Route>
+      <Route path="/create-product">
+        <CreateProduct />
       </Route>
       <Route exact path="/logout" component={Logout} />
     </>
