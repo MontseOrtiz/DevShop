@@ -18,10 +18,9 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  NavbarText,
 } from "reactstrap";
 
-function NavbarComponent({ setUser3 }) {
+function NavbarComponent() {
   // const [isOpen, setIsOpen] = useState(false);
   // const toggle = () => setIsOpen(!isOpen);
 
@@ -47,7 +46,7 @@ function NavbarComponent({ setUser3 }) {
           .then((res) => {
             console.log("obteniendo data de usuario", res.data, res.status);
             setUser(res.data);
-            setUser3(res.data);
+
             console.log("soy user", user);
           })
 

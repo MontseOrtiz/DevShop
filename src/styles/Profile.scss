@@ -4,9 +4,37 @@
     height: 100vh;
 
     .profile-content{
-        padding-top: 9em;
+        // padding-top: 9em;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap; 
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        height: 100%;
+        background-color: pink;
+
+        .avatar{
+            padding-top: 9em;
+            width: 50%;
+
+            // padding: auto 0 !important;
+
+
+            img{
+                width: 40%;
+            }
+        }
+
+        .info{
+            width: 50%;
+    
+        }
+
+        p{
+            font-size: 2em;
+        }
     }
+
 }

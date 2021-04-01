@@ -1,20 +1,14 @@
-import "./App.css";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
-import Routes from "./Routes";
-import React, { useState, useEffect } from "react";
-import NavbarComponent from "./Components/Navbar";
+import { useState } from "react";
 
-import axios from "axios";
-import payload from "./utils/payload";
-
-function App() {
+export default function getUser() {
   const token = window.localStorage.getItem("token");
   const [user, setUser] = useState({});
   let idUser = undefined;
-
+  console.log("soy user11111-----routes>", user);
   const obtenerDatos = () => {
+    console.log("entrando 2222");
     if (token) {
-      console.log("sin token ");
+      console.log("entrando");
       const user2 = payload();
       idUser = user2.id;
       const config = {
@@ -32,7 +26,7 @@ function App() {
           .then((res) => {
             console.log("obteniendo data de usuario", res.data, res.status);
             setUser(res.data);
-            console.log("soy user-----routes>", user);
+            console.log("soy user2222-----routes>", user);
           })
 
           .catch((error) => {
@@ -44,22 +38,12 @@ function App() {
       console.log("soy el user activo", user.first_name);
     }
   };
-  if (token && idUser != undefined) {
-    useEffect(() => {
-      // console.log("itemSearch   ", itemsSearch);
-      // obtenerUser();
-      obtenerDatos();
-      console.log("sourlekdalskdmalskdlaskjlkasjflaksjfl", user);
-    }, [token]);
-  }
-
-  return (
-    <Router>
-      <Switch>
-        <Routes user={user} />
-      </Switch>
-    </Router>
-  );
+  // if (token && idUser != undefined) {
+  //   useEffect(() => {
+  //     // console.log("itemSearch   ", itemsSearch);
+  //     // obtenerUser();
+  //     obtenerDatos();
+  //     console.log("sourle,mlmlmlmlmlkdalskdmalskdlaskjlkasjflaksjfl", user);
+  //   }, [token]);
+  // }
 }
-
-export default App;

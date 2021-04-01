@@ -11,52 +11,6 @@ function Login({ setUser3 }) {
   const history = useHistory();
   const [mensaje, setMensaje] = useState();
 
-  const token = window.localStorage.getItem("token");
-  const [user, setUser] = useState({});
-  let idUser = undefined;
-
-  const obtenerDatos = () => {
-    if (token) {
-      console.log("sin token ");
-      const user2 = payload();
-      idUser = user2.id;
-      const config = {
-        headers: {
-          Authorization: `JWT ${token}`,
-        },
-      };
-
-      const obtenerUser = async () => {
-        await axios
-          .get(
-            `https://ecomerce-master.herokuapp.com/api/v1/user/${idUser}`,
-            config
-          )
-          .then((res) => {
-            console.log("obteniendo data de usuario", res.data, res.status);
-            setUser(res.data);
-            setUser3(res.data);
-            console.log("soy user-----routes>", user);
-          })
-
-          .catch((error) => {
-            console.error(error.response.data);
-          });
-      };
-      obtenerUser();
-      console.log("soy user aslkdjasdlasjdlaks", user);
-      console.log("soy el user activo", user.first_name);
-    }
-  };
-  // if (token && idUser != undefined) {
-  //   useEffect(() => {
-  //     // console.log("itemSearch   ", itemsSearch);
-  //     // obtenerUser();
-  //     obtenerDatos();
-  //     console.log("sourlekdalskdmalskdlaskjlkasjflaksjfl", user);
-  //   }, [token]);
-  // }
-
   const sendForm = (inputs) => {
     axios
       .post("https://ecomerce-master.herokuapp.com/api/v1/login", inputs)
@@ -65,7 +19,7 @@ function Login({ setUser3 }) {
         const { token } = data;
 
         window.localStorage.setItem("token", token);
-        obtenerDatos();
+
         history.push("/profile");
       })
       .catch((error) => {
@@ -73,6 +27,7 @@ function Login({ setUser3 }) {
         if (errorStatus === "fail") {
           setMensaje("Algo no coincide, por favor intentalo de nuevo");
         }
+        console.error("eroororororoalskdjalsjdlaskjdl", error);
         console.error("eroororororo", error.response.data);
         console.error("eroororororo", error.response.data.status);
       });
