@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import sinImagen from "../assets/sin_imagen.jpg";
-import Navbar from "../Components/Navbar";
+import NavbarComponent from "../Components/Navbar";
 import "../styles/SingleProduct.scss";
 
 function SingleProduct() {
@@ -26,7 +26,7 @@ function SingleProduct() {
 
   return (
     <div className="div-contenedor">
-      <Navbar />
+      <NavbarComponent />
 
       <div className="container div-contenido ">
         <div className="row">

@@ -9,16 +9,22 @@ import SingleProduct from "./Views/SingleProduct";
 import axios from "axios";
 import payload from "./utils/payload";
 import { Redirect } from "react-router-dom";
-import Logout from "./Components/Logout";
+// import Logout from "./Components/Logout";
 
 function Routes() {
+  const Logout = () => {
+    window.localStorage.removeItem("token");
+    return <Redirect to="/" />;
+  };
   const token = window.localStorage.getItem("token");
   const [user, setUser] = useState({});
-  const qwer = () => {
+  let idUser = undefined;
+
+  const obtenerDatos = () => {
     if (token) {
       console.log("sin token ");
       const user2 = payload();
-      let idUser = user2.id;
+      idUser = user2.id;
       const config = {
         headers: {
           Authorization: `JWT ${token}`,
@@ -46,67 +52,14 @@ function Routes() {
       console.log("soy el user activo", user.first_name);
     }
   };
+  if (token && idUser != undefined) {
+    useEffect(() => {
+      // console.log("itemSearch   ", itemsSearch);
+      // obtenerUser();
+      obtenerDatos();
+    }, [token]);
+  }
 
-  useEffect(() => {
-    // console.log("itemSearch   ", itemsSearch);
-    // obtenerUser();
-    qwer();
-  }, [token]);
-  // const token = window.localStorage.getItem("token");
-  // const [user, setUser] = useState({});
-  // const qwer = () => {
-  //   if (token) {
-  //     console.log("sin token ");
-  //     const user2 = payload();
-  //     let idUser = user2.id;
-  //     const config = {
-  //       headers: {
-  //         Authorization: `JWT ${token}`,
-  //       },
-  //     };
-
-  //     const obtenerUser = async () => {
-  //       await axios
-  //         .get(
-  //           `https://ecomerce-master.herokuapp.com/api/v1/user/${idUser}`,
-  //           config
-  //         )
-  //         .then((res) => {
-  //           console.log("obteniendo data de usuario", res.data, res.status);
-  //           setUser(res.data);
-  //           console.log("soy user", user);
-  //         })
-
-  //         .catch((error) => {
-  //           console.error(error.response.data);
-  //         });
-  //     };
-  //     obtenerUser();
-  //     console.log("soy user aslkdjasdlasjdlaks", user);
-  //     console.log("soy el user activo", user.first_name);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   // console.log("itemSearch   ", itemsSearch);
-  //   // obtenerUser();
-  //   qwer();
-  // }, [token]);
-
-  // if (token) {
-  //   useEffect(() => {
-  //     // console.log("itemSearch   ", itemsSearch);
-  //     // obtenerUser();
-  //     qwer();
-  //   }, [token]);
-  // }
-
-  // const Logout = () => {
-  //   window.localStorage.removeItem("token");
-  //   return <Redirect to="/" />;
-  // };
-
-  // console.log("que obtengo----->", user);
   return (
     <>
       <Route exact path="/">
@@ -128,9 +81,7 @@ function Routes() {
       <Route path="/profile">
         <Perfil user={user} />
       </Route>
-      <Route path="/logout">
-        <Logout />
-      </Route>
+      <Route exact path="/logout" component={Logout} />
     </>
   );
 }

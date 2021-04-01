@@ -1,10 +1,10 @@
 import React from "react";
-import Navbar from "../Components/Navbar";
+import NavbarComponent from "../Components/Navbar";
 import { useHistory } from "react-router-dom";
 import useForm from "../hooks/useForm";
 import axios from "axios";
 
-function Signup({ user }) {
+function Signup() {
   const history = useHistory();
 
   const sendForm = (inputs) => {
@@ -29,7 +29,7 @@ function Signup({ user }) {
 
   return (
     <>
-      <Navbar user={user} />
+      <NavbarComponent />
       <p>Soy signup</p>
       <form onSubmit={handleSubmit}>
         <div className="input-group flex-nowrap">

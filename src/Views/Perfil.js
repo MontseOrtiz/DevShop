@@ -2,7 +2,7 @@ import React, { useState } from "react";
 // import React, { useState, useEffect } from "react";
 // import payload from "../utils/payload";
 // import axios from "axios";
-import Navbar from "../Components/Navbar";
+import NavbarComponent from "../Components/Navbar";
 
 function Perfil({ user }) {
   console.log("soy el perfil--------------------->>", user);
@@ -14,7 +14,7 @@ function Perfil({ user }) {
 
   return (
     <div>
-      <Navbar user={user} />
+      <NavbarComponent user={user} />
       <p>Soy el perfil</p>
       <p>{user.first_name}</p>
       <p>{user.last_name}</p>

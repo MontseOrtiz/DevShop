@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Navbar from "../Components/Navbar";
+import NavbarComponent from "../Components/Navbar";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import useForm from "../hooks/useForm";
@@ -63,7 +63,7 @@ function Login() {
 
   return (
     <div>
-      <Navbar />
+      <NavbarComponent />
       <h2>Soy Login</h2>
 
       <form onSubmit={handleSubmit}>

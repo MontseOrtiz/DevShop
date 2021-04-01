@@ -3,13 +3,31 @@ import React, { useState, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
 import Buscador from "./Buscador";
 import payload from "../utils/payload";
-import getUser from "../hooks/getUser";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
-function Navbar() {
+import "../styles/Navbar.scss";
+
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  NavbarText,
+} from "reactstrap";
+
+function NavbarComponent() {
+  // const [isOpen, setIsOpen] = useState(false);
+  // const toggle = () => setIsOpen(!isOpen);
+
   const token = window.localStorage.getItem("token");
   const [user, setUser] = useState({});
-  const qwer = () => {
+  const obtenerDatos = () => {
     if (token) {
       console.log("sin token ");
       const user2 = payload();
@@ -41,52 +59,84 @@ function Navbar() {
       console.log("soy el user activo", user.first_name);
     }
   };
+  console.log("soy el perfil--------------------->>", user);
+  const role = user.role;
+  let admin;
+  if (role === "ADMIN") {
+    admin = true;
+  }
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => setIsOpen(!isOpen);
+
+  const Logout = () => {
+    window.localStorage.removeItem("token");
+    return <Redirect to="/" />;
+  };
 
   useEffect(() => {
     // console.log("itemSearch   ", itemsSearch);
     // obtenerUser();
-    qwer();
+    obtenerDatos();
   }, [token]);
 
   return (
     <div>
-      <Link to="/">
-        <h2>DEVSHOP</h2>
-        {/* <p>{userName}</p> */}
-        {/* <p>{user.first_name}</p> */}
-      </Link>
-      <p>Buscador</p>
-      <Buscador />
+      <Navbar color="light" light expand="md">
+        <NavbarBrand href="/">DEVSHOP</NavbarBrand>
+        {/* <Link to="/">
+          <h2>DEVSHOP</h2>
+        </Link> */}
 
-      {token ? (
-        <div>
-          <Link to="/profile">Bienvenido!! {user.first_name}</Link>
-          {/* <button onClick={log}>Cerrar Sesión</button>
-          <Link to="/profile">Bienvenido!! </Link> */}
-          <Link to="/logout"> Cerrar sesion</Link>
-        </div>
-      ) : (
-        <div>
-          <Link to="/login">
-            <p>Login</p>
-          </Link>
-          <Link to="/signup">
-            <p>Signup</p>
-          </Link>
-        </div>
-      )}
-      {/* <div>
-        <Link to="/">Bienvenido!! </Link>
-        <Link to="/logout">Cerrar Sesión</Link>
-      </div> */}
-      {/* <Link to="/login">
-        <p>Login</p>
-      </Link>
-      <Link to="/signup">
-        <p>Signup</p>
-      </Link> */}
+        <Buscador />
+
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="mr-auto" navbar>
+            {token ? (
+              admin ? (
+                <>
+                  <UncontrolledDropdown nav inNavbar>
+                    <DropdownToggle nav caret>
+                      Hola {user.first_name}
+                    </DropdownToggle>
+                    <DropdownMenu right>
+                      <DropdownItem href="/profile">Perfil</DropdownItem>
+                      <DropdownItem>Crear Producto</DropdownItem>
+                    </DropdownMenu>
+                  </UncontrolledDropdown>
+                  <NavItem>
+                    <NavLink href="/logout">Cerrar sesion</NavLink>
+                  </NavItem>
+                </>
+              ) : (
+                <>
+                  <NavItem>
+                    <NavLink href="/profile">
+                      Bienvenido!! {user.first_name}
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink href="/logout" onClick={Logout}>
+                      Cerrar sesion
+                    </NavLink>
+                  </NavItem>
+                </>
+              )
+            ) : (
+              <>
+                <NavItem>
+                  <NavLink href="/login">Login</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink href="/signup">Signup</NavLink>
+                </NavItem>
+              </>
+            )}
+          </Nav>
+        </Collapse>
+      </Navbar>
     </div>
   );
 }
 
-export default Navbar;
+export default NavbarComponent;

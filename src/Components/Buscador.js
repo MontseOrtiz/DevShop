@@ -14,7 +14,6 @@ function Buscador() {
 
   return (
     <div>
-      <h1>hola</h1>
       <input
         onChange={(e) => {
           console.log(e.target.value);
