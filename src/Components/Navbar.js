@@ -28,7 +28,6 @@ function NavbarComponent() {
   const [user, setUser] = useState({});
   const obtenerDatos = () => {
     if (token) {
-      console.log("sin token ");
       const user2 = payload();
       let idUser = user2.id;
       const config = {
@@ -55,11 +54,8 @@ function NavbarComponent() {
           });
       };
       obtenerUser();
-      console.log("soy user aslkdjasdlasjdlaks", user);
-      console.log("soy el user activo", user.first_name);
     }
   };
-  console.log("soy el perfil--------------------->>", user);
   const role = user.role;
   let admin;
   if (role === "ADMIN") {
@@ -74,8 +70,6 @@ function NavbarComponent() {
   };
 
   useEffect(() => {
-    // console.log("itemSearch   ", itemsSearch);
-    // obtenerUser();
     obtenerDatos();
   }, [token]);
 
@@ -88,9 +82,6 @@ function NavbarComponent() {
         className="fixed-top nav-container"
       >
         <NavbarBrand href="/">DEVSHOP</NavbarBrand>
-        {/* <Link to="/">
-          <h2>DEVSHOP</h2>
-        </Link> */}
 
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>

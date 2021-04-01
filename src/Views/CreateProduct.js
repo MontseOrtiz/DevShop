@@ -13,11 +13,11 @@ function CreateProduct() {
   const sendForm = (inputs) => {
     const token = window.localStorage.getItem("token");
     const skuGenerator = (length) => {
-      var result = "";
-      var characters =
+      let result = "";
+      let characters =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-      var charactersLength = characters.length;
-      for (var i = 0; i < length; i++) {
+      let charactersLength = characters.length;
+      for (let i = 0; i < length; i++) {
         result += characters.charAt(
           Math.floor(Math.random() * charactersLength)
         );
@@ -28,19 +28,12 @@ function CreateProduct() {
     if (token) {
       const skuValue = skuGenerator(24);
       inputs = { ...inputs, sku: skuValue };
-      console.log("somos los inputs", inputs);
       const config = {
         headers: {
           Authorization: `JWT ${token}`,
         },
       };
-      //   const data = {
-      //     ...inputs,
-      //     sku: skuGenerator,
-      //   };
-      //   inputs = data;
 
-      //   console.log("soy la data", data);
       axios
         .post(
           "https://ecomerce-master.herokuapp.com/api/v1/item",

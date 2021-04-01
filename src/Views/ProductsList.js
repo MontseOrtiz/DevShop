@@ -23,7 +23,6 @@ function ProductsList({ user }) {
       .then((res) => {
         setProductsList(res.data);
         setShowList(res.data);
-        console.log("soy la respuesta", res.data);
         list = res.data;
       })
       .catch((err) => console.log(err));
@@ -32,7 +31,6 @@ function ProductsList({ user }) {
 
   const buscador = async () => {
     let respuesta = await obtainProducts();
-    console.log("respuests buscador", respuesta);
 
     setbusquedaList([]);
     setShowList([]);
@@ -43,9 +41,7 @@ function ProductsList({ user }) {
       }
     }
 
-    console.log("soy busqueda", busquedaList);
     setShowList(busquedaList);
-    console.log("soy show list "), showList;
     if (showList.length === 0) {
       setMensaje(
         " Lo sentimos no hay resultados acerca de tu busqueda, busca de nuevo"
@@ -55,12 +51,10 @@ function ProductsList({ user }) {
 
   if (itemsSearch) {
     useEffect(() => {
-      console.log("itemSearch   ", itemsSearch);
       buscador();
     }, [itemsSearch]);
   } else {
     useEffect(() => {
-      console.log("useeffect cambiolkasjda");
       obtainProducts();
     }, []);
   }
@@ -70,8 +64,6 @@ function ProductsList({ user }) {
       <NavbarComponent />
       <div className="contenido">
         <h2 className="titulo-productos text-pattern">Nuestros Productos</h2>
-        {/* <p>hey {user.first_name}</p> */}
-        {/* <div className="container-fluid d-flex flex-row flex-wrap justify-content-around"> */}
         <div className="container-fluid px-5">
           <div className="row">
             {showList.length != 0 ? (

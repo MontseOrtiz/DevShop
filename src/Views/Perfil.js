@@ -6,17 +6,12 @@ import payload from "../utils/payload";
 import axios from "axios";
 
 function Perfil() {
-  // console.log("soy el perfil--------------------->>", user);
-
   const token = window.localStorage.getItem("token");
   const [user, setUser] = useState({});
   let idUser = undefined;
-  console.log("soy user11111-----routes>", user);
 
   const obtenerDatos = () => {
-    console.log("entrando 2222");
     if (token != undefined) {
-      console.log("entrando");
       const user2 = payload();
       idUser = user2.id;
       const config = {
@@ -32,9 +27,7 @@ function Perfil() {
             config
           )
           .then((res) => {
-            console.log("obteniendo data de usuario", res.data, res.status);
             setUser(res.data);
-            console.log("soy user2222-----routes>", user);
           })
 
           .catch((error) => {
@@ -42,8 +35,6 @@ function Perfil() {
           });
       };
       obtenerUser();
-      console.log("soy user aslkdjasdlasjdlaks", user);
-      console.log("soy el user activo", user.first_name);
     }
   };
 
@@ -56,7 +47,6 @@ function Perfil() {
 
   useEffect(() => {
     obtenerDatos();
-    console.log("sourle,mlmlmlmlmlkdalskdmalskdlaskjlkasjflaksjfl", user);
   }, [token]);
 
   return (

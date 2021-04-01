@@ -15,7 +15,6 @@ function Signup() {
       axios
         .post("https://ecomerce-master.herokuapp.com/api/v1/signup", inputs)
         .then(({ data, status }) => {
-          console.log(data, status);
           history.push("/");
         })
         .catch((error) => {
@@ -105,9 +104,7 @@ function Signup() {
             />
           </div>
 
-          <div
-          // className="col-6 mt-4"
-          >
+          <div>
             <button type="submit" className="btn btn-primary sign-up-btn">
               Crear Cuenta
             </button>

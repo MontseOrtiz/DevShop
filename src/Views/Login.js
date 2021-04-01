@@ -27,9 +27,6 @@ function Login({ setUser3 }) {
         if (errorStatus === "fail") {
           setMensaje("Algo no coincide, por favor intentalo de nuevo");
         }
-        console.error("eroororororoalskdjalsjdlaskjdl", error);
-        console.error("eroororororo", error.response.data);
-        console.error("eroororororo", error.response.data.status);
       });
   };
 

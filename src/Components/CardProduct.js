@@ -7,10 +7,8 @@ function CardProduct({ producto }) {
   const token = window.localStorage.getItem("token");
   const hayUsuario = () => {
     if (token) {
-      console.log("tenemos token yeiiiii -------->", token);
       return alert("Agregado a tu carrito");
     }
-    console.log("no hay token");
     return alert(
       "Por favor inicia sesión o registrate para realizar una compra"
     );

@@ -23,10 +23,8 @@ function SingleProduct() {
 
   const hayUsuario = () => {
     if (token) {
-      console.log("tenemos token yeiiiii -------->", token);
       return alert("Agregado a tu carrito");
     }
-    console.log("no hay token");
     return alert(
       "Por favor inicia sesión o registrate para realizar una compra"
     );
@@ -79,7 +77,6 @@ function SingleProduct() {
               Comprar
             </button>
             <p className="descripcion-producto">{producto.description}</p>
-            {/* <Link to="/">Todos los productos</Link> */}
           </div>
         </div>
       </div>
