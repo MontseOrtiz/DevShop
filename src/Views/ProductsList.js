@@ -49,15 +49,17 @@ function ProductsList({ user }) {
     }
   };
 
-  if (itemsSearch) {
-    useEffect(() => {
+  useEffect(() => {
+    if (itemsSearch) {
       buscador();
-    }, [itemsSearch]);
-  } else {
-    useEffect(() => {
+    }
+  }, [itemsSearch]);
+
+  useEffect(() => {
+    if (!itemsSearch) {
       obtainProducts();
-    }, []);
-  }
+    }
+  }, []);
 
   return (
     <div className="div-all-products">

@@ -10,6 +10,6 @@ export default function () {
 
     return payloadObject;
   } else {
-    null;
+    return null;
   }
 }
