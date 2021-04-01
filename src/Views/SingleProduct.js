@@ -6,6 +6,7 @@ import NavbarComponent from "../Components/Navbar";
 import "../styles/SingleProduct.scss";
 
 function SingleProduct() {
+  const token = window.localStorage.getItem("token");
   const [producto, setProduct] = useState({});
   const { iditem } = useParams();
 
@@ -18,6 +19,17 @@ function SingleProduct() {
         setProduct(res.data);
       })
       .catch((err) => console.log(err));
+  };
+
+  const hayUsuario = () => {
+    if (token) {
+      console.log("tenemos token yeiiiii -------->", token);
+      return alert("Agregado a tu carrito");
+    }
+    console.log("no hay token");
+    return alert(
+      "Por favor inicia sesión o registrate para realizar una compra"
+    );
   };
 
   useEffect(() => {
@@ -63,7 +75,9 @@ function SingleProduct() {
             <p className="categoria-producto">Categoria: {producto.category}</p>
             <p className="precio-producto">${producto.price}</p>
 
-            <button className="btn-comprar">Comprar</button>
+            <button className="btn-comprar" onClick={hayUsuario}>
+              Comprar
+            </button>
             <p className="descripcion-producto">{producto.description}</p>
             {/* <Link to="/">Todos los productos</Link> */}
           </div>

@@ -4,6 +4,17 @@ import { Link } from "react-router-dom";
 import sinImagen from "../assets/sin_imagen.jpg";
 
 function CardProduct({ producto }) {
+  const token = window.localStorage.getItem("token");
+  const hayUsuario = () => {
+    if (token) {
+      console.log("tenemos token yeiiiii -------->", token);
+      return alert("Agregado a tu carrito");
+    }
+    console.log("no hay token");
+    return alert(
+      "Por favor inicia sesión o registrate para realizar una compra"
+    );
+  };
   return (
     // <div className="card-product">
     <div className="card-product col-11 col-sm-6 col-md-4 col-lg-3 p-1 p-md-3  mx-auto">
@@ -46,7 +57,7 @@ function CardProduct({ producto }) {
         </div>
         <div>
           <p className="precio-producto">${producto.price}</p>
-          <button>Comprar</button>
+          <button onClick={hayUsuario}>Comprar</button>
         </div>
       </div>
     </div>
