@@ -1,11 +1,11 @@
 import React from "react";
 import CardProduct from "../Components/CardProduct";
-import Navbar from "../Components/Navbar";
+import NavbarComponent from "../Components/Navbar";
 
 function Home() {
   return (
     <div>
-      <Navbar />
+      <NavbarComponent />
       <h2>Soy Home</h2>
       <CardProduct></CardProduct>
     </div>

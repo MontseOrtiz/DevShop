@@ -1,0 +1,113 @@
+$btn-color: #817DD2;
+
+.div-contenedor{
+    background: url("../assets/background-single-product.png") no-repeat;
+    background-size: cover;
+    height: 100vh;
+    font-size: 66.5%; 
+
+    .div-contenido{
+        padding-top: 9em; 
+        height: 100%;
+        // transition: all .5s;
+        padding: auto 0;
+        display: flex;
+        align-items: center;
+       
+    }
+
+
+    .img-single{
+        display: block;
+        margin: auto auto auto 0;
+        border-radius: 50%;
+        width: 60%;
+        -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
+        box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+    }
+
+    .img-single:hover{
+        -moz-transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        -o-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+
+    }
+
+    .nombre-producto{
+        font-weight: bold;
+        font-size: 3em;
+        margin-bottom: .2em;
+    }
+
+    .marca-producto{
+        color: gray;
+        font-size: 2em;
+    }
+
+    .precio-producto{
+        font-weight: 500;
+        font-size: 1.7em;
+        margin-bottom: .2em;
+    }
+
+    .categoria-producto{
+        font-size: 1.7em;
+    }
+
+    .descripcion-producto{
+        margin-top: 1em;
+        font-size: 1.5em;
+    }
+
+    .btn-comprar{
+        width: 60%;
+        height: 4em;
+        border-radius: .5em;
+        border: none;
+        text-transform: uppercase;
+        font-size: 1.3em;
+        background-color: $btn-color;
+        margin: 1em 0;
+    }
+}
+
+
+
+@media screen and (max-width: 576px) {
+
+
+    .div-contenedor{
+
+        .div-contenido{
+            justify-content: space-around;
+            .row{
+                height: 100%;
+            }
+        }
+        .nombre-producto, .precio-producto {
+            font-size: 1.6em;
+        }
+    
+        .marca-producto, .categoria-producto,  .descripcion-producto{
+            font-size: 1.2em;
+        }
+
+       .img-single{
+            margin-bottom: 3em;
+            border-radius: .5em;
+            width: 60%;
+            // height: 20%;
+            margin: auto;
+        }
+        .btn-comprar{
+            height: 3em;
+            font-size: 1.2em;
+            margin: 1em 0;
+        }
+      
+    
+    }
+
+ }

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CardProduct from "../Components/CardProduct";
-import Navbar from "../Components/Navbar";
+import NavbarComponent from "../Components/Navbar";
 import { useParams } from "react-router-dom";
+import "../styles/CardProduct.scss";
+import sinResultado from "../assets/sin_resultado.png";
 
-function ProductsList() {
+function ProductsList({ user }) {
   const { itemsSearch } = useParams();
   const [productsList, setProductsList] = useState([]);
   const [busquedaList, setbusquedaList] = useState([]);
@@ -21,7 +23,6 @@ function ProductsList() {
       .then((res) => {
         setProductsList(res.data);
         setShowList(res.data);
-        console.log("soy la respuesta", res.data);
         list = res.data;
       })
       .catch((err) => console.log(err));
@@ -30,7 +31,6 @@ function ProductsList() {
 
   const buscador = async () => {
     let respuesta = await obtainProducts();
-    console.log("respuests buscador", respuesta);
 
     setbusquedaList([]);
     setShowList([]);
@@ -41,9 +41,7 @@ function ProductsList() {
       }
     }
 
-    console.log("soy busqueda", busquedaList);
     setShowList(busquedaList);
-    console.log("soy show list "), showList;
     if (showList.length === 0) {
       setMensaje(
         " Lo sentimos no hay resultados acerca de tu busqueda, busca de nuevo"
@@ -53,27 +51,38 @@ function ProductsList() {
 
   if (itemsSearch) {
     useEffect(() => {
-      console.log("itemSearch   ", itemsSearch);
       buscador();
     }, [itemsSearch]);
   } else {
     useEffect(() => {
-      console.log("useeffect cambiolkasjda");
       obtainProducts();
     }, []);
   }
 
   return (
-    <div>
-      <Navbar />
-      <h2>Soy Product page </h2>
-      {showList.length != 0 ? (
-        showList.map((producto) => {
-          return <CardProduct producto={producto} key={producto._id} />;
-        })
-      ) : (
-        <p>{mensaje}</p>
-      )}
+    <div className="div-all-products">
+      <NavbarComponent />
+      <div className="contenido">
+        <h2 className="titulo-productos text-pattern">Nuestros Productos</h2>
+        <div className="container-fluid px-5">
+          <div className="row">
+            {showList.length != 0 ? (
+              showList.map((producto) => {
+                return <CardProduct producto={producto} key={producto._id} />;
+              })
+            ) : (
+              <>
+                <p className="mensaje">{mensaje}</p>
+                <img
+                  src={sinResultado}
+                  alt={"Sin resultado"}
+                  className="img-mensaje"
+                />
+              </>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
